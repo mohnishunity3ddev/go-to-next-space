@@ -12,14 +12,14 @@ function nextEmptySpace() {
   const text = line.text;
   const startIndex = editor.selection.active.character + 1;
   let index = text.indexOf(' ', startIndex);
-  
+
   if(text.charAt(startIndex) === ' ' && text.charAt(index) === ' ') {
     const lineLength = line.text.length;
     while(text.charAt(index) === ' ' && index < (lineLength - 1)) {
       ++index;
     }
   }
-  
+
   if (index === -1) {
     editor.selection = new vscode.Selection(
         editor.selection.active.line, line.range.end.character,
@@ -126,7 +126,7 @@ function selectToPreviousEmptySpace() {
 
   const newSelection = new vscode.Selection(startPos, endPos);
   editor.selection = newSelection;
-  
+
   editor.revealRange(new vscode.Range(endPos, endPos));
 }
 
@@ -135,7 +135,7 @@ function lineEnd() {
   if (!editor) {
     return;  // No open text editor
   }
-  
+
   const line = editor.document.lineAt(editor.selection.active.line);
   editor.selection = new vscode.Selection(
       editor.selection.active.line, line.range.end.character,
@@ -150,20 +150,20 @@ function selectToEnd() {
   }
   const document = editor.document;
   const selection = editor.selection;
-  
+
   const line = document.lineAt(editor.selection.active.line);
   const text = line.text;
   const lineNumber = selection.active.line;
-  
+
   let startIndex = selection.start.character;
   let endIndex = text.length;
-  
+
   const startPos = new vscode.Position(lineNumber, startIndex);
   const endPos = new vscode.Position(lineNumber, endIndex);
-  
+
   const newSelection = new vscode.Selection(startPos, endPos);
   editor.selection = newSelection;
-  
+
   editor.revealRange(new vscode.Range(endPos, endPos));
 }
 
@@ -173,15 +173,15 @@ function selectToStart() {
     return;  // No open text editor
   }
   const selection = editor.selection;
-  
+
   const lineNumber = selection.active.line;
-  
+
   let startIndex = selection.start.character;
   let endIndex = 0;
-  
+
   const startPos = new vscode.Position(lineNumber, startIndex);
   const endPos = new vscode.Position(lineNumber, endIndex);
-  
+
   const newSelection = new vscode.Selection(startPos, endPos);
   editor.selection = newSelection;
   editor.revealRange(new vscode.Range(endPos, endPos));
@@ -314,7 +314,7 @@ async function goToFunctionStart() {
                 new vscode.Position(funcArgsLine, openingBraceIndex + 1);
 
             editor.selection = new vscode.Selection(position, position);
-            
+
             const revealPos =
                 new vscode.Position(functionSymbol.range.start.line, 0);
             editor.revealRange(new vscode.Range(revealPos, revealPos));
@@ -341,11 +341,11 @@ async function openHeaderSourceFileInNextEditorGroup() {
   if (!activeEditor) {
     return;
   }
-  
+
   const activeDocument = activeEditor.document;
   const activeFilePath = activeDocument.uri.fsPath;
   const activeFileName = activeDocument.fileName;
-  
+
   // Determine the header/source file path based on the current file's name and
   // path
   let headerSourceFilePath;
@@ -356,14 +356,14 @@ async function openHeaderSourceFileInNextEditorGroup() {
   } else {
     return;
   }
-  
+
   // Find the header/source file document in the workspace
   // const headerSourceDocument = vscode.workspace.textDocuments.find(
   //     (doc) => doc.uri.fsPath === headerSourceFilePath);
   // if (!headerSourceDocument) {
   //   return;
   // }
-  
+
   // deciding the viewColumn depending on the current active editor.
   let viewColumn = activeEditor.viewColumn;
   if(viewColumn === vscode.ViewColumn.One) {
@@ -371,7 +371,7 @@ async function openHeaderSourceFileInNextEditorGroup() {
   } else if (viewColumn === vscode.ViewColumn.Two) {
     viewColumn = vscode.ViewColumn.One;
   }
-  
+
   // Open the header/source file in the next editor group
   const document = await vscode.workspace.openTextDocument(headerSourceFilePath);
   vscode.window.showTextDocument(document, {
@@ -386,13 +386,13 @@ async function splitToOtherWindow() {
   if (!editor) {
     return;  // No open text editor
   }
-  
+
   const document = editor.document;
   const uri = document.uri;
   const cursorPosition = editor.selection.active;
-  
+
   let activatedEditor;
-  
+
   if (vscode.window.visibleTextEditors.length === 1) {
     // If only one editor is opened, open the current file on the right pane
     activatedEditor = await vscode.commands.executeCommand('workbench.action.splitEditorRight');
@@ -402,7 +402,7 @@ async function splitToOtherWindow() {
     await vscode.commands.executeCommand('workbench.action.focusNextGroup');
     activatedEditor = vscode.window.activeTextEditor;
   }
-  
+
   if (activatedEditor) {
     const newDocument = await vscode.workspace.openTextDocument(uri);
     await vscode.window.showTextDocument(newDocument, {
@@ -437,12 +437,12 @@ async function splitToOtherWindow() {
 function addSemicolonAndMoveCursor() {
   return;
   const editor = vscode.window.activeTextEditor;
-  
+
   if(editor) {
     const cursorPosition = editor.selection.active;
     const line = editor.document.lineAt(cursorPosition.line);
     const lineText = line.text;
-    
+
     if (!lineText.endsWith(';')) {
       const endOfLinePosition =
           new vscode.Position(cursorPosition.line, lineText.length);
@@ -468,12 +468,12 @@ function activate(context) {
       'go-to-next-space.goToNextSpace', nextEmptySpace);
   let selectToNextSpaceCommand = vscode.commands.registerCommand(
       'go-to-next-space.selectToNextSpace', selectToNextEmptySpace);
-  
+
   let previousSpaceCommand = vscode.commands.registerCommand(
       'go-to-next-space.goToPreviousSpace', previousEmptySpace);
   let selectToPreviousSpaceCommand = vscode.commands.registerCommand(
       'go-to-next-space.selectToPreviousSpace', selectToPreviousEmptySpace);
-  
+
   let lineEndCommand =
       vscode.commands.registerCommand('go-to-next-space.goToLineEnd', lineEnd);
   let selectToEndCommand = vscode.commands.registerCommand(
@@ -482,21 +482,21 @@ function activate(context) {
       'go-to-next-space.goToLineStart', lineStart);
   let selectToStartCommand = vscode.commands.registerCommand(
       'go-to-next-space.selectToStart', selectToStart);
-  
+
   let createCppFilesCommand = vscode.commands.registerCommand(
       'go-to-next-space.createCppFiles', createCppFiles);
-  
+
   let markCursorCommand = vscode.commands.registerCommand(
       'go-to-next-space.markCursor', markCursor);
   let selectMarkedCommand = vscode.commands.registerCommand(
       'go-to-next-space.selectMarked', selectMarked);
-  
+
   let goToFunctionStartCommand = vscode.commands.registerCommand(
       'go-to-next-space.goToFunctionStart', goToFunctionStart);
-  
+
   let splitCommand = vscode.commands.registerCommand(
       'go-to-next-space.split', splitToOtherWindow);
-  
+
   let addSemicolonCommand = vscode.commands.registerCommand(
       'go-to-next-space.addSemicolonAndMoveCursor', addSemicolonAndMoveCursor);
 

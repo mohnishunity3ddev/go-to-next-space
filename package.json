@@ -9,7 +9,11 @@
   "categories": [
     "Other"
   ],
-  "publisher": "Mohnish Sharma",
+  "publisher": "mohnishdev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohnishunity3ddev/go-to-next-space"
+  },
   "activationEvents": [
     "onCommand:go-to-next-space.goToNextSpace",
     "onCommand:go-to-next-space.selectToNextSpace",
@@ -28,59 +32,59 @@
     "commands": [
       {
         "command": "go-to-next-space.toggleHeaderInOtherWindow",
-        "title": "Mani: Toggle Header/Source to other window"
+        "title": "NextSpace: Toggle Header/Source to other window"
       },
       {
         "command": "go-to-next-space.split",
-        "title": "Mani: Split to other window"
+        "title": "NextSpace: Split to other window"
       },
       {
         "command": "go-to-next-space.goToNextSpace",
-        "title": "Mani: Go to Next Space"
+        "title": "NextSpace: Go to Next Space"
       },
       {
         "command": "go-to-next-space.goToPreviousSpace",
-        "title": "Mani: Go to Previous Space"
+        "title": "NextSpace: Go to Previous Space"
       },
       {
         "command": "go-to-next-space.goToLineStart",
-        "title": "Mani: Go to Start of Line"
+        "title": "NextSpace: Go to Start of Line"
       },
       {
         "command": "go-to-next-space.goToLineEnd",
-        "title": "Mani: Go to End of Line"
+        "title": "NextSpace: Go to End of Line"
       },
       {
         "command": "go-to-next-space.selectToNextSpace",
-        "title": "Mani: Select till Next Empty Space"
+        "title": "NextSpace: Select till Next Empty Space"
       },
       {
         "command": "go-to-next-space.selectToPreviousSpace",
-        "title": "Mani: Select till Previous Empty Space"
+        "title": "NextSpace: Select till Previous Empty Space"
       },
       {
         "command": "go-to-next-space.selectToEnd",
-        "title": "Mani: Select till end of line"
+        "title": "NextSpace: Select till end of line"
       },
       {
         "command": "go-to-next-space.selectToStart",
-        "title": "Mani: Select till start of line"
+        "title": "NextSpace: Select till start of line"
       },
       {
         "command": "go-to-next-space.createCppFiles",
-        "title": "Mani: Create Cpp Files"
+        "title": "NextSpace: Create Cpp Files"
       },
       {
         "command": "go-to-next-space.markCursor",
-        "title": "Mani: Mark Cursor"
+        "title": "NextSpace: Mark Cursor"
       },
       {
         "command": "go-to-next-space.selectMarked",
-        "title": "Mani: Select between Marks"
+        "title": "NextSpace: Select between Marks"
       },
       {
         "command": "go-to-next-space.goToFunctionStart",
-        "title": "Mani: Go To Function Start"
+        "title": "NextSpace: Go To Function Start"
       }
     ],
     "configuration":{
