@@ -2,7 +2,7 @@
   "name": "go-to-next-space",
   "displayName": "go-to-next-space",
   "description": "Go to the next/previous empty space in the current line",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.75.0"
   },
