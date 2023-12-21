@@ -1,0 +1,175 @@
+{
+  "name": "go-to-next-space",
+  "displayName": "go-to-next-space",
+  "description": "Go to the next/previous empty space in the current line",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "publisher": "Mohnish Sharma",
+  "activationEvents": [
+    "onCommand:go-to-next-space.goToNextSpace",
+    "onCommand:go-to-next-space.selectToNextSpace",
+    "onCommand:go-to-next-space.goToPreviousSpace",
+    "onCommand:go-to-next-space.selectToPreviousSpace",
+    "onCommand:go-to-next-space.goToLineStart",
+    "onCommand:go-to-next-space.goToLineEnd",
+    "onCommand:go-to-next-space.createCppFiles",
+    "onCommand:go-to-next-space.markCursor",
+    "onCommand:go-to-next-space.selectMarked",
+    "onCommand:go-to-next-space.goToFunctionStart",
+    "onCommand:go-to-next-space.addSemicolonAndMoveCursor"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "go-to-next-space.toggleHeaderInOtherWindow",
+        "title": "Mani: Toggle Header/Source to other window"
+      },
+      {
+        "command": "go-to-next-space.split",
+        "title": "Mani: Split to other window"
+      },
+      {
+        "command": "go-to-next-space.goToNextSpace",
+        "title": "Mani: Go to Next Space"
+      },
+      {
+        "command": "go-to-next-space.goToPreviousSpace",
+        "title": "Mani: Go to Previous Space"
+      },
+      {
+        "command": "go-to-next-space.goToLineStart",
+        "title": "Mani: Go to Start of Line"
+      },
+      {
+        "command": "go-to-next-space.goToLineEnd",
+        "title": "Mani: Go to End of Line"
+      },
+      {
+        "command": "go-to-next-space.selectToNextSpace",
+        "title": "Mani: Select till Next Empty Space"
+      },
+      {
+        "command": "go-to-next-space.selectToPreviousSpace",
+        "title": "Mani: Select till Previous Empty Space"
+      },
+      {
+        "command": "go-to-next-space.selectToEnd",
+        "title": "Mani: Select till end of line"
+      },
+      {
+        "command": "go-to-next-space.selectToStart",
+        "title": "Mani: Select till start of line"
+      },
+      {
+        "command": "go-to-next-space.createCppFiles",
+        "title": "Mani: Create Cpp Files"
+      },
+      {
+        "command": "go-to-next-space.markCursor",
+        "title": "Mani: Mark Cursor"
+      },
+      {
+        "command": "go-to-next-space.selectMarked",
+        "title": "Mani: Select between Marks"
+      },
+      {
+        "command": "go-to-next-space.goToFunctionStart",
+        "title": "Mani: Go To Function Start"
+      }
+    ],
+    "configuration":{
+      "type": "object",
+      "title": "Go To Next Space (Create Cpp File)",
+      "properties": {
+        "go-to-next-space.folderPath":{
+          "type": "string",
+          "description": "The path of the folder where the files will be created."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "go-to-next-space.toggleHeaderInOtherWindow",
+        "key": "alt+o",
+        "when": "editorTextFocus && editorLangId == 'c' || editorTextFocus && editorLangId == 'cpp' || editorTextFocus && editorLangId == 'cuda-cpp'"
+      },
+      {
+        "command": "go-to-next-space.goToNextSpace",
+        "key":"ctrl+'",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.selectToNextSpace",
+        "key":"ctrl+shift+'",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.goToPreviousSpace",
+        "key": "ctrl+;",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.selectToPreviousSpace",
+        "key": "ctrl+shift+;",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.goToLineStart",
+        "key": "alt+;",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.goToLineEnd",
+        "key": "alt+'",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.selectToStart",
+        "key": "shift+alt+;",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.selectToEnd",
+        "key": "shift+alt+'",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.markCursor",
+        "key": "alt+u",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.selectMarked",
+        "key": "shift+alt+u",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "go-to-next-space.goToFunctionStart",
+        "key": "ctrl+alt+f",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3",
+    "@vscode/test-electron": "^2.2.0"
+  }
+}
