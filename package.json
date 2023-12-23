@@ -2,7 +2,7 @@
   "name": "go-to-next-space",
   "displayName": "go-to-next-space",
   "description": "Go to the next/previous empty space in the current line",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -10,6 +10,7 @@
     "Other"
   ],
   "publisher": "mohnishdev",
+  "icon": "images/NextSpace.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/mohnishunity3ddev/go-to-next-space"
